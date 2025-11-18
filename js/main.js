@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('themeToggle');
     const sidebarToggle = document.querySelector('aside .flex.items-center.justify-between button');
 
-    // Function to update the theme toggle icon
     function updateIcon() {
         if (!themeToggle) return;
 
@@ -25,18 +24,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Toggle theme function
     function toggleTheme() {
     document.documentElement.classList.toggle('dark');
     localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
     updateIcon();
     
-    // Debug: Check if classes are being applied
     console.log('Dark mode:', document.documentElement.classList.contains('dark'));
     console.log('Body classes:', document.body.className);
 }
 
-    // Initialize theme on page load
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
@@ -44,21 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.classList.remove('dark');
     }
     
-    // Initialize theme icon
     updateIcon();
 
-    // Event listener for theme toggle
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
 
-    // Event listener for sidebar toggle
     if (sidebarToggle) {
         sidebarToggle.addEventListener('click', toggleSidebar);
     }
 });
 
-// Page switcher - can be outside DOMContentLoaded since it's called from HTML
 function switchPage(pageId, btn) {
     document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
     document.getElementById(pageId).classList.remove('hidden');
@@ -71,13 +63,11 @@ function switchPage(pageId, btn) {
     btn.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-gray-700');
     btn.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white', 'shadow-md', 'shadow-blue-500', 'dark:shadow-blue-500/30');
 
-    // Check if renderTeachers function exists before calling it
     if (pageId === 'teachersPage' && typeof renderTeachers === 'function') {
         renderTeachers();
     }
 }
 
-// Sidebar toggle function - can be outside DOMContentLoaded
 function toggleSidebar() {
     const sidebar = document.querySelector('aside');
     const mainContent = document.getElementById('mainContent');
@@ -85,21 +75,17 @@ function toggleSidebar() {
     const eduAdminText = document.querySelector('aside .flex.items-center.gap-2 span');
     const navTexts = document.querySelectorAll('nav button span');
 
-    // Toggle sidebar width
     sidebar.classList.toggle('w-20');
     sidebar.classList.toggle('w-64');
     
-    // Toggle main content margin
     if (mainContent) {
         mainContent.classList.toggle('ml-20');
         mainContent.classList.toggle('ml-64');
     }
 
-    // Toggle text visibility
     if (eduAdminText) eduAdminText.classList.toggle('hidden');
     navTexts.forEach(span => span.classList.toggle('hidden'));
 
-    // Rotate chevron icon
     if (toggleButton) {
         const chevronSvg = toggleButton.querySelector('svg');
         if (chevronSvg) {
