@@ -711,7 +711,7 @@ function renderStudents(students = studentsData) {
                     
                     <!-- Rating Progress Bar -->
                     <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="bg-white h-2 rounded-full transition-all duration-300" 
+                        <div class="bg-black dark:bg-white h-2 rounded-full transition-all duration-300" 
                              style="width: ${(student.rating / 5) * 100}%">
                         </div>
                     </div>

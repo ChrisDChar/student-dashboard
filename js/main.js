@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('themeToggle');
-    const sidebarToggle = document.querySelector('aside .flex.items-center.justify-between button');
+    let themeToggle = document.getElementById('themeToggle');
+    let sidebarToggle = document.querySelector('aside .flex.items-center.justify-between button');
 
     function updateIcon() {
         if (!themeToggle) return;
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Body classes:', document.body.className);
 }
 
-    const savedTheme = localStorage.getItem('theme');
+    let savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
     } else {
@@ -69,11 +69,11 @@ function switchPage(pageId, btn) {
 }
 
 function toggleSidebar() {
-    const sidebar = document.querySelector('aside');
-    const mainContent = document.getElementById('mainContent');
-    const toggleButton = document.querySelector('aside .flex.items-center.justify-between button');
-    const eduAdminText = document.querySelector('aside .flex.items-center.gap-2 span');
-    const navTexts = document.querySelectorAll('nav button span');
+    let sidebar = document.querySelector('aside');
+    let mainContent = document.getElementById('mainContent');
+    let toggleButton = document.querySelector('aside .flex.items-center.justify-between button');
+    let eduAdminText = document.querySelector('aside .flex.items-center.gap-2 span');
+    let navTexts = document.querySelectorAll('nav button span');
 
     sidebar.classList.toggle('w-20');
     sidebar.classList.toggle('w-64');
@@ -87,7 +87,7 @@ function toggleSidebar() {
     navTexts.forEach(span => span.classList.toggle('hidden'));
 
     if (toggleButton) {
-        const chevronSvg = toggleButton.querySelector('svg');
+        let chevronSvg = toggleButton.querySelector('svg');
         if (chevronSvg) {
             chevronSvg.classList.toggle('rotate-180');
         }
