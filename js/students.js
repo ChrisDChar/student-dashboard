@@ -1,657 +1,4 @@
-let studentsData = [
-    {
-        id: 1,
-        name: "Armando Huel",
-        grade: 7,
-        age: 12,
-        rating: 3.2,
-        coins: 912,
-        phone: "1-955-731-0692 x1516",
-        email: "Armando.huel@hotmail.com",
-        twitter: "@armandohuel",
-        linkedin: "linkedin.com/in/armando-huel",
-        gender: "Male"
-    },
-    {
-        id: 2,
-        name: "Pamela DuBuque",
-        grade: 2,
-        age: 11,
-        rating: 2.8,
-        coins: 504,
-        phone: "(504) 230-1996 x49404",
-        email: "Pamela.DuBuque@yahoo.com",
-        twitter: "@pameladubuque",
-        linkedin: "linkedin.com/in/pamela-dubuque",
-        gender: "Female"
-    },
-    {
-        id: 3,
-        name: "Juan Schoen",
-        grade: 6,
-        age: 10,
-        rating: 4.7,
-        coins: 176,
-        phone: "(783) 323-0001 x64542",
-        email: "Juan.Schoen56@yahoo.com",
-        twitter: "@juanschoen",
-        linkedin: "linkedin.com/in/juan-schoen",
-        gender: "Male"
-    },
-    {
-        id: 4,
-        name: "Anthony Jacobi",
-        grade: 11,
-        age: 10,
-        rating: 3.1,
-        coins: 973,
-        phone: "519.663.7462 x61797",
-        email: "Anthony.Jacobi@gmail.com",
-        twitter: "@anthonyjacobi",
-        linkedin: "linkedin.com/in/anthony-jacobi",
-        gender: "Male"
-    },
-    {
-        id: 5,
-        name: "Emma Watson",
-        grade: 10,
-        age: 16,
-        rating: 4.5,
-        coins: 845,
-        phone: "555-123-4567 x1234",
-        email: "emma.watson@school.edu",
-        twitter: "@emmawatson",
-        linkedin: "linkedin.com/in/emma-watson",
-        gender: "Female"
-    },
-    {
-        id: 6,
-        name: "Liam Johnson",
-        grade: 8,
-        age: 14,
-        rating: 3.8,
-        coins: 623,
-        phone: "555-234-5678 x2345",
-        email: "liam.johnson@school.edu",
-        twitter: "@liamjohnson",
-        linkedin: "linkedin.com/in/liam-johnson",
-        gender: "Male"
-    },
-    {
-        id: 7,
-        name: "Sophia Martinez",
-        grade: 5,
-        age: 11,
-        rating: 4.2,
-        coins: 758,
-        phone: "555-345-6789 x3456",
-        email: "sophia.martinez@school.edu",
-        twitter: "@sophiamartinez",
-        linkedin: "linkedin.com/in/sophia-martinez",
-        gender: "Female"
-    },
-    {
-        id: 8,
-        name: "Noah Garcia",
-        grade: 9,
-        age: 15,
-        rating: 3.9,
-        coins: 691,
-        phone: "555-456-7890 x4567",
-        email: "noah.garcia@school.edu",
-        twitter: "@noahgarcia",
-        linkedin: "linkedin.com/in/noah-garcia",
-        gender: "Male"
-    },
-    {
-        id: 9,
-        name: "Isabella Rodriguez",
-        grade: 4,
-        age: 10,
-        rating: 4.8,
-        coins: 1024,
-        phone: "555-567-8901 x5678",
-        email: "isabella.rodriguez@school.edu",
-        twitter: "@isabellarodriguez",
-        linkedin: "linkedin.com/in/isabella-rodriguez",
-        gender: "Female"
-    },
-    {
-        id: 10,
-        name: "James Brown",
-        grade: 12,
-        age: 18,
-        rating: 3.5,
-        coins: 587,
-        phone: "555-678-9012 x6789",
-        email: "james.brown@school.edu",
-        twitter: "@jamesbrown",
-        linkedin: "linkedin.com/in/james-brown",
-        gender: "Male"
-    },
-    {
-        id: 11,
-        name: "Mia Davis",
-        grade: 7,
-        age: 13,
-        rating: 4.1,
-        coins: 834,
-        phone: "555-789-0123 x7890",
-        email: "mia.davis@school.edu",
-        twitter: "@miadavis",
-        linkedin: "linkedin.com/in/mia-davis",
-        gender: "Female"
-    },
-    {
-        id: 12,
-        name: "William Wilson",
-        grade: 6,
-        age: 12,
-        rating: 3.7,
-        coins: 712,
-        phone: "555-890-1234 x8901",
-        email: "william.wilson@school.edu",
-        twitter: "@williamwilson",
-        linkedin: "linkedin.com/in/william-wilson",
-        gender: "Male"
-    },
-    {
-        id: 13,
-        name: "Charlotte Moore",
-        grade: 3,
-        age: 9,
-        rating: 4.6,
-        coins: 945,
-        phone: "555-901-2345 x9012",
-        email: "charlotte.moore@school.edu",
-        twitter: "@charlottemoore",
-        linkedin: "linkedin.com/in/charlotte-moore",
-        gender: "Female"
-    },
-    {
-        id: 14,
-        name: "Benjamin Taylor",
-        grade: 11,
-        age: 17,
-        rating: 3.4,
-        coins: 678,
-        phone: "555-012-3456 x0123",
-        email: "benjamin.taylor@school.edu",
-        twitter: "@benjamintaylor",
-        linkedin: "linkedin.com/in/benjamin-taylor",
-        gender: "Male"
-    },
-    {
-        id: 15,
-        name: "Amelia Anderson",
-        grade: 8,
-        age: 14,
-        rating: 4.3,
-        coins: 891,
-        phone: "555-123-4567 x1234",
-        email: "amelia.anderson@school.edu",
-        twitter: "@ameliaanderson",
-        linkedin: "linkedin.com/in/amelia-anderson",
-        gender: "Female"
-    },
-    {
-        id: 16,
-        name: "Lucas Thomas",
-        grade: 5,
-        age: 11,
-        rating: 3.6,
-        coins: 765,
-        phone: "555-234-5678 x2345",
-        email: "lucas.thomas@school.edu",
-        twitter: "@lucasthomas",
-        linkedin: "linkedin.com/in/lucas-thomas",
-        gender: "Male"
-    },
-    {
-        id: 17,
-        name: "Harper Jackson",
-        grade: 9,
-        age: 15,
-        rating: 4.4,
-        coins: 823,
-        phone: "555-345-6789 x3456",
-        email: "harper.jackson@school.edu",
-        twitter: "@harperjackson",
-        linkedin: "linkedin.com/in/harper-jackson",
-        gender: "Female"
-    },
-    {
-        id: 18,
-        name: "Henry White",
-        grade: 10,
-        age: 16,
-        rating: 3.8,
-        coins: 734,
-        phone: "555-456-7890 x4567",
-        email: "henry.white@school.edu",
-        twitter: "@henrywhite",
-        linkedin: "linkedin.com/in/henry-white",
-        gender: "Male"
-    },
-    {
-        id: 19,
-        name: "Evelyn Harris",
-        grade: 4,
-        age: 10,
-        rating: 4.7,
-        coins: 987,
-        phone: "555-567-8901 x5678",
-        email: "evelyn.harris@school.edu",
-        twitter: "@evelynharris",
-        linkedin: "linkedin.com/in/evelyn-harris",
-        gender: "Female"
-    },
-    {
-        id: 20,
-        name: "Alexander Martin",
-        grade: 7,
-        age: 13,
-        rating: 3.9,
-        coins: 856,
-        phone: "555-678-9012 x6789",
-        email: "alexander.martin@school.edu",
-        twitter: "@alexandermartin",
-        linkedin: "linkedin.com/in/alexander-martin",
-        gender: "Male"
-    },
-    {
-        id: 21,
-        name: "Abigail Thompson",
-        grade: 6,
-        age: 12,
-        rating: 4.2,
-        coins: 912,
-        phone: "555-789-0123 x7890",
-        email: "abigail.thompson@school.edu",
-        twitter: "@abigailthompson",
-        linkedin: "linkedin.com/in/abigail-thompson",
-        gender: "Female"
-    },
-    {
-        id: 22,
-        name: "Michael Garcia",
-        grade: 8,
-        age: 14,
-        rating: 3.5,
-        coins: 645,
-        phone: "555-890-1234 x8901",
-        email: "michael.garcia@school.edu",
-        twitter: "@michaelgarcia",
-        linkedin: "linkedin.com/in/michael-garcia",
-        gender: "Male"
-    },
-    {
-        id: 23,
-        name: "Emily Martinez",
-        grade: 5,
-        age: 11,
-        rating: 4.8,
-        coins: 1056,
-        phone: "555-901-2345 x9012",
-        email: "emily.martinez@school.edu",
-        twitter: "@emilymartinez",
-        linkedin: "linkedin.com/in/emily-martinez",
-        gender: "Female"
-    },
-    {
-        id: 24,
-        name: "Daniel Robinson",
-        grade: 9,
-        age: 15,
-        rating: 3.7,
-        coins: 723,
-        phone: "555-012-3456 x0123",
-        email: "daniel.robinson@school.edu",
-        twitter: "@danielrobinson",
-        linkedin: "linkedin.com/in/daniel-robinson",
-        gender: "Male"
-    },
-    {
-        id: 25,
-        name: "Elizabeth Clark",
-        grade: 11,
-        age: 17,
-        rating: 4.1,
-        coins: 894,
-        phone: "555-123-4567 x1234",
-        email: "elizabeth.clark@school.edu",
-        twitter: "@elizabethclark",
-        linkedin: "linkedin.com/in/elizabeth-clark",
-        gender: "Female"
-    },
-    {
-        id: 26,
-        name: "Matthew Rodriguez",
-        grade: 10,
-        age: 16,
-        rating: 3.6,
-        coins: 781,
-        phone: "555-234-5678 x2345",
-        email: "matthew.rodriguez@school.edu",
-        twitter: "@matthewrodriguez",
-        linkedin: "linkedin.com/in/matthew-rodriguez",
-        gender: "Male"
-    },
-    {
-        id: 27,
-        name: "Sofia Lewis",
-        grade: 7,
-        age: 13,
-        rating: 4.5,
-        coins: 923,
-        phone: "555-345-6789 x3456",
-        email: "sofia.lewis@school.edu",
-        twitter: "@sofialewis",
-        linkedin: "linkedin.com/in/sofia-lewis",
-        gender: "Female"
-    },
-    {
-        id: 28,
-        name: "David Lee",
-        grade: 4,
-        age: 10,
-        rating: 3.8,
-        coins: 667,
-        phone: "555-456-7890 x4567",
-        email: "david.lee@school.edu",
-        twitter: "@davidlee",
-        linkedin: "linkedin.com/in/david-lee",
-        gender: "Male"
-    },
-    {
-        id: 29,
-        name: "Avery Walker",
-        grade: 8,
-        age: 14,
-        rating: 4.3,
-        coins: 845,
-        phone: "555-567-8901 x5678",
-        email: "avery.walker@school.edu",
-        twitter: "@averywalker",
-        linkedin: "linkedin.com/in/avery-walker",
-        gender: "Female"
-    },
-    {
-        id: 30,
-        name: "Joseph Hall",
-        grade: 6,
-        age: 12,
-        rating: 3.9,
-        coins: 789,
-        phone: "555-678-9012 x6789",
-        email: "joseph.hall@school.edu",
-        twitter: "@josephhall",
-        linkedin: "linkedin.com/in/joseph-hall",
-        gender: "Male"
-    },
-    {
-        id: 31,
-        name: "Ella Allen",
-        grade: 5,
-        age: 11,
-        rating: 4.6,
-        coins: 934,
-        phone: "555-789-0123 x7890",
-        email: "ella.allen@school.edu",
-        twitter: "@ellaallen",
-        linkedin: "linkedin.com/in/ella-allen",
-        gender: "Female"
-    },
-    {
-        id: 32,
-        name: "Samuel Young",
-        grade: 9,
-        age: 15,
-        rating: 3.4,
-        coins: 712,
-        phone: "555-890-1234 x8901",
-        email: "samuel.young@school.edu",
-        twitter: "@samuelyoung",
-        linkedin: "linkedin.com/in/samuel-young",
-        gender: "Male"
-    },
-    {
-        id: 33,
-        name: "Scarlett King",
-        grade: 7,
-        age: 13,
-        rating: 4.2,
-        coins: 876,
-        phone: "555-901-2345 x9012",
-        email: "scarlett.king@school.edu",
-        twitter: "@scarlettking",
-        linkedin: "linkedin.com/in/scarlett-king",
-        gender: "Female"
-    },
-    {
-        id: 34,
-        name: "Andrew Wright",
-        grade: 11,
-        age: 17,
-        rating: 3.7,
-        coins: 823,
-        phone: "555-012-3456 x0123",
-        email: "andrew.wright@school.edu",
-        twitter: "@andrewwright",
-        linkedin: "linkedin.com/in/andrew-wright",
-        gender: "Male"
-    },
-    {
-        id: 35,
-        name: "Grace Scott",
-        grade: 8,
-        age: 14,
-        rating: 4.4,
-        coins: 945,
-        phone: "555-123-4567 x1234",
-        email: "grace.scott@school.edu",
-        twitter: "@gracescott",
-        linkedin: "linkedin.com/in/grace-scott",
-        gender: "Female"
-    },
-    {
-        id: 36,
-        name: "Joshua Green",
-        grade: 6,
-        age: 12,
-        rating: 3.8,
-        coins: 768,
-        phone: "555-234-5678 x2345",
-        email: "joshua.green@school.edu",
-        twitter: "@joshuagreen",
-        linkedin: "linkedin.com/in/joshua-green",
-        gender: "Male"
-    },
-    {
-        id: 37,
-        name: "Chloe Adams",
-        grade: 4,
-        age: 10,
-        rating: 4.7,
-        coins: 1012,
-        phone: "555-345-6789 x3456",
-        email: "chloe.adams@school.edu",
-        twitter: "@chloeadams",
-        linkedin: "linkedin.com/in/chloe-adams",
-        gender: "Female"
-    },
-    {
-        id: 38,
-        name: "Christopher Baker",
-        grade: 10,
-        age: 16,
-        rating: 3.5,
-        coins: 689,
-        phone: "555-456-7890 x4567",
-        email: "christopher.baker@school.edu",
-        twitter: "@christopherbaker",
-        linkedin: "linkedin.com/in/christopher-baker",
-        gender: "Male"
-    },
-    {
-        id: 39,
-        name: "Victoria Nelson",
-        grade: 7,
-        age: 13,
-        rating: 4.1,
-        coins: 834,
-        phone: "555-567-8901 x5678",
-        email: "victoria.nelson@school.edu",
-        twitter: "@victorianelson",
-        linkedin: "linkedin.com/in/victoria-nelson",
-        gender: "Female"
-    },
-    {
-        id: 40,
-        name: "Ryan Carter",
-        grade: 9,
-        age: 15,
-        rating: 3.9,
-        coins: 756,
-        phone: "555-678-9012 x6789",
-        email: "ryan.carter@school.edu",
-        twitter: "@ryancarter",
-        linkedin: "linkedin.com/in/ryan-carter",
-        gender: "Male"
-    },
-    {
-        id: 41,
-        name: "Zoe Mitchell",
-        grade: 5,
-        age: 11,
-        rating: 4.5,
-        coins: 892,
-        phone: "555-789-0123 x7890",
-        email: "zoe.mitchell@school.edu",
-        twitter: "@zoemitchell",
-        linkedin: "linkedin.com/in/zoe-mitchell",
-        gender: "Female"
-    },
-    {
-        id: 42,
-        name: "Nicholas Perez",
-        grade: 8,
-        age: 14,
-        rating: 3.6,
-        coins: 723,
-        phone: "555-890-1234 x8901",
-        email: "nicholas.perez@school.edu",
-        twitter: "@nicholasperez",
-        linkedin: "linkedin.com/in/nicholas-perez",
-        gender: "Male"
-    },
-    {
-        id: 43,
-        name: "Lily Roberts",
-        grade: 6,
-        age: 12,
-        rating: 4.3,
-        coins: 867,
-        phone: "555-901-2345 x9012",
-        email: "lily.roberts@school.edu",
-        twitter: "@lilyroberts",
-        linkedin: "linkedin.com/in/lily-roberts",
-        gender: "Female"
-    },
-    {
-        id: 44,
-        name: "Jonathan Turner",
-        grade: 11,
-        age: 17,
-        rating: 3.7,
-        coins: 798,
-        phone: "555-012-3456 x0123",
-        email: "jonathan.turner@school.edu",
-        twitter: "@jonathanturner",
-        linkedin: "linkedin.com/in/jonathan-turner",
-        gender: "Male"
-    },
-    {
-        id: 45,
-        name: "Mila Phillips",
-        grade: 7,
-        age: 13,
-        rating: 4.6,
-        coins: 934,
-        phone: "555-123-4567 x1234",
-        email: "mila.phillips@school.edu",
-        twitter: "@milaphillips",
-        linkedin: "linkedin.com/in/mila-phillips",
-        gender: "Female"
-    },
-    {
-        id: 46,
-        name: "Kevin Campbell",
-        grade: 9,
-        age: 15,
-        rating: 3.8,
-        coins: 812,
-        phone: "555-234-5678 x2345",
-        email: "kevin.campbell@school.edu",
-        twitter: "@kevincampbell",
-        linkedin: "linkedin.com/in/kevin-campbell",
-        gender: "Male"
-    },
-    {
-        id: 47,
-        name: "Penelope Parker",
-        grade: 4,
-        age: 10,
-        rating: 4.4,
-        coins: 956,
-        phone: "555-345-6789 x3456",
-        email: "penelope.parker@school.edu",
-        twitter: "@penelopeparker",
-        linkedin: "linkedin.com/in/penelope-parker",
-        gender: "Female"
-    },
-    {
-        id: 48,
-        name: "Thomas Evans",
-        grade: 10,
-        age: 16,
-        rating: 3.9,
-        coins: 774,
-        phone: "555-456-7890 x4567",
-        email: "thomas.evans@school.edu",
-        twitter: "@thomasevans",
-        linkedin: "linkedin.com/in/thomas-evans",
-        gender: "Male"
-    },
-    {
-        id: 49,
-        name: "Hannah Edwards",
-        grade: 8,
-        age: 14,
-        rating: 4.2,
-        coins: 889,
-        phone: "555-567-8901 x5678",
-        email: "hannah.edwards@school.edu",
-        twitter: "@hannahedwards",
-        linkedin: "linkedin.com/in/hannah-edwards",
-        gender: "Female"
-    },
-    {
-        id: 50,
-        name: "Brandon Collins",
-        grade: 6,
-        age: 12,
-        rating: 3.5,
-        coins: 701,
-        phone: "555-678-9012 x6789",
-        email: "brandon.collins@school.edu",
-        twitter: "@brandoncollins",
-        linkedin: "linkedin.com/in/brandon-collins",
-        gender: "Male"
-    }
-];
-
-
+let studentsData = [];
 let currentStudentFilters = {
     gender: 'all',
     grade: 'all',
@@ -660,26 +7,220 @@ let currentStudentFilters = {
     search: ''
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderStudents(studentsData);
-    updateStudentsCount(studentsData.length, studentsData.length);
-    initializeStudentFilters();
-    setupStudentSearch();
-});
+let STUDENTS_API_URL = 'https://692376893ad095fb84709f35.mockapi.io/students';
+
+function getStudentInitials(name) {
+    if (!name) return '??';
+    return name.split(' ')
+        .map(word => word.charAt(0))
+        .join('')
+        .toUpperCase()
+        .substring(0, 2);
+}
+
+function normalizeStudentRating(rating) {
+    if (rating === null || rating === undefined) {
+        return 3.0;
+    }
+    
+    let numRating = typeof rating === 'string' ? parseFloat(rating) : rating;
+    
+    if (numRating >= 1 && numRating <= 5) {
+        return parseFloat(numRating.toFixed(1));
+    }
+    
+    if (numRating >= 0 && numRating <= 100) {
+        let normalized = 1 + (numRating / 100) * 4;
+        return parseFloat(normalized.toFixed(1));
+    }
+    
+    return Math.min(5, parseFloat(numRating.toFixed(1)));
+}
+
+function normalizeStudentGender(gender) {
+    console.log('Raw student gender value:', gender, 'Type:', typeof gender);
+    
+    // Handle null/undefined
+    if (gender === null || gender === undefined) {
+        return Math.random() > 0.5 ? 'Male' : 'Female';
+    }
+    
+    // Handle boolean values from MockAPI
+    if (typeof gender === 'boolean') {
+        return gender ? 'Male' : 'Female';
+    }
+    
+    // Handle number values (if any)
+    if (typeof gender === 'number') {
+        return gender === 1 ? 'Male' : 'Female';
+    }
+    
+    // Handle string values
+    if (typeof gender === 'string') {
+        const genderLower = gender.toLowerCase();
+        
+        if (genderLower.includes('male') || genderLower === 'm' || genderLower === 'boy' || genderLower === 'true' || genderLower === '1') {
+            return 'Male';
+        }
+        if (genderLower.includes('female') || genderLower === 'f' || genderLower === 'girl' || genderLower === 'false' || genderLower === '0') {
+            return 'Female';
+        }
+    }
+    
+    // Default fallback - randomly assign Male/Female
+    return Math.random() > 0.5 ? 'Male' : 'Female';
+}
+
+async function loadStudentsData() {
+    try {
+        showStudentLoadingState();
+        
+        let response = await fetch(STUDENTS_API_URL);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        let data = await response.json();
+        
+        data = data.map(student => ({
+            ...student,
+            age: normalizeStudentAge(student.age),
+            grade: normalizeStudentGrade(student.grade),
+            coins: normalizeStudentCoins(student.coins),
+            rating: normalizeStudentRating(student.rating)
+        }));
+        
+        if (!Array.isArray(data)) {
+            throw new Error('Invalid data format: Expected array');
+        }
+        
+        if (data.length === 0) {
+            console.warn('No students data found in API');
+        }
+        
+        studentsData = data;
+        renderStudents(studentsData);
+        updateStudentsCount(studentsData.length, studentsData.length);
+        
+    } catch (error) {
+        console.error('Error loading students data:', error);
+        showStudentErrorState('Failed to load students data. Please try again later.');
+        studentsData = [];
+    }
+}
+
+function normalizeStudentAge(age) {
+    if (age >= 6 && age <= 20) {
+        return age;
+    }
+    if (age > 18) {
+        return Math.min(18, Math.max(6, age % 13 + 6));
+    }
+    return Math.max(6, age);
+}
+
+function normalizeStudentGrade(grade) {
+    if (grade >= 1 && grade <= 12) {
+        return grade;
+    }
+    if (grade > 12) {
+        return Math.min(12, Math.max(1, grade % 12 + 1));
+    }
+    return Math.max(1, grade);
+}
+
+function normalizeStudentCoins(coins) {
+    if (coins >= 0 && coins <= 500) {
+        return coins;
+    }
+    return Math.min(500, Math.max(0, coins));
+}
+
+function normalizeStudentRating(rating) {
+    if (rating === null || rating === undefined) {
+        return 3.0;
+    }
+    
+    let numRating = typeof rating === 'string' ? parseFloat(rating) : rating;
+    
+    if (numRating >= 1 && numRating <= 5) {
+        return parseFloat(numRating.toFixed(1));
+    }
+    
+    if (numRating >= 0 && numRating <= 100) {
+        let normalized = 1 + (numRating / 100) * 4;
+        return parseFloat(normalized.toFixed(1));
+    }
+    
+    return Math.min(5, parseFloat(numRating.toFixed(1)));
+}
+
+function showStudentLoadingState() {
+    let container = document.getElementById("studentsContainer");
+    if (container) {
+        container.innerHTML = `
+            <div class="col-span-full flex justify-center items-center py-12">
+                <div class="text-center">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+                    <p class="text-gray-600 dark:text-gray-400">Loading students...</p>
+                </div>
+            </div>
+        `;
+    }
+}
+
+function showStudentErrorState(message) {
+    let container = document.getElementById("studentsContainer");
+    if (container) {
+        container.innerHTML = `
+            <div class="col-span-full flex justify-center items-center py-12">
+                <div class="text-center text-red-600 dark:text-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                    <p class="text-lg font-medium mb-2">Oops! Something went wrong</p>
+                    <p class="text-sm">${message}</p>
+                    <button onclick="loadStudentsData()" class="mt-4 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors">
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+}
 
 function renderStudents(students = studentsData) {
     let container = document.getElementById("studentsContainer");
     if (!container) return;
 
-    container.innerHTML = students.map(student => `
-        <div class="student-card flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group">
+    if (students.length === 0) {
+        container.innerHTML = `
+            <div class="col-span-full flex justify-center items-center py-12">
+                <div class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                    </svg>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg">No students found</p>
+                    <p class="text-gray-500 dark:text-gray-500 text-sm">Try adjusting your filters or search terms</p>
+                </div>
+            </div>
+        `;
+        return;
+    }
 
+    container.innerHTML = students.map(student => `
+        <div class="student-card flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group"
+         onclick="openDetailPage('student', '${student.id}')">
             <div class="flex flex-col items-center text-center mb-4">
-                <span class="relative flex size-10 shrink-0 overflow-hidden rounded-full h-20 w-20 mb-3 ring-4 ring-purple-100 dark:ring-purple-900">
-                    <div class="w-full h-full flex items-center justify-center text-2xl font-bold text-gray-900 dark:text-white bg-gray-300 dark:bg-gray-700 rounded-full">
-                        ${student.name.split(" ").map(n => n[0]).join("")}
-                    </div>
-                </span>
+                <div class="relative h-20 w-20 mb-3">
+                    ${student.avatar ? 
+                        `<img src="${student.avatar}" alt="${student.name}" class="w-full h-full rounded-full object-cover ring-4 ring-purple-100 dark:ring-purple-900" />` :
+                        `<div class="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white text-2xl font-bold ring-4 ring-purple-100 dark:ring-purple-900">
+                            ${getStudentInitials(student.name)}
+                        </div>`
+                    }
+                </div>
 
                 <h3 class="text-gray-900 dark:text-white mb-1">${student.name}</h3>
 
@@ -709,10 +250,9 @@ function renderStudents(students = studentsData) {
                         </div>
                     </div>
                     
-                    <!-- Rating Progress Bar -->
                     <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                         <div class="bg-black dark:bg-white h-2 rounded-full transition-all duration-300" 
-                             style="width: ${(student.rating / 5) * 100}%">
+                             style="width: ${(Math.min(student.rating, 5) / 5) * 100}%">
                         </div>
                     </div>
                 </div>
@@ -776,13 +316,13 @@ function initializeStudentFilters() {
 }
 
 function populateGradeOptions() {
-    const gradeContainer = document.querySelector('.grade-option')?.parentElement;
+    let gradeContainer = document.querySelector('.grade-option')?.parentElement;
     if (!gradeContainer) return;
     
-    const grades = [...new Set(studentsData.map(student => student.grade))].sort((a, b) => a - b);
+    let grades = [...new Set(studentsData.map(student => student.grade))].sort((a, b) => a - b);
     
     grades.forEach(grade => {
-        const button = document.createElement('button');
+        let button = document.createElement('button');
         button.className = 'grade-option w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2';
         button.setAttribute('data-value', grade);
         button.textContent = `Grade ${grade}`;
@@ -791,13 +331,13 @@ function populateGradeOptions() {
 }
 
 function setupStudentFilterDropdowns() {
-    const filterButtons = document.querySelectorAll('.student-filter-btn');
+    let filterButtons = document.querySelectorAll('.student-filter-btn');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.stopPropagation();
-            const dropdown = button.nextElementSibling;
-            const isVisible = dropdown.style.display === 'block';
+            let dropdown = button.nextElementSibling;
+            let isVisible = dropdown.style.display === 'block';
             
             document.querySelectorAll('.student-filters .absolute').forEach(dropdown => {
                 dropdown.style.display = 'none';
@@ -817,7 +357,7 @@ function setupStudentFilterDropdowns() {
 function setupStudentFilterHandlers() {
     document.querySelectorAll('.student-gender-option').forEach(option => {
         option.addEventListener('click', (e) => {
-            const value = e.target.getAttribute('data-value');
+            let value = e.target.getAttribute('data-value');
             currentStudentFilters.gender = value;
             updateStudentFilterButton('gender', value, getStudentGenderDisplayText(value));
             applyStudentFilters();
@@ -826,7 +366,7 @@ function setupStudentFilterHandlers() {
 
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('grade-option')) {
-            const value = e.target.getAttribute('data-value');
+            let value = e.target.getAttribute('data-value');
             currentStudentFilters.grade = value;
             updateStudentFilterButton('grade', value, getStudentGradeDisplayText(value));
             applyStudentFilters();
@@ -835,7 +375,7 @@ function setupStudentFilterHandlers() {
 
     document.querySelectorAll('.student-rating-option').forEach(option => {
         option.addEventListener('click', (e) => {
-            const value = e.target.getAttribute('data-value');
+            let value = e.target.getAttribute('data-value');
             currentStudentFilters.rating = value;
             updateStudentFilterButton('rating', value, getStudentRatingDisplayText(value));
             applyStudentFilters();
@@ -844,7 +384,7 @@ function setupStudentFilterHandlers() {
 
     document.querySelectorAll('.student-age-option').forEach(option => {
         option.addEventListener('click', (e) => {
-            const value = e.target.getAttribute('data-value');
+            let value = e.target.getAttribute('data-value');
             currentStudentFilters.age = value;
             updateStudentFilterButton('age', value, getStudentAgeDisplayText(value));
             applyStudentFilters();
@@ -853,7 +393,7 @@ function setupStudentFilterHandlers() {
 }
 
 function updateStudentFilterButton(filterType, value, displayText) {
-    const button = document.querySelector(`[data-student-filter="${filterType}"]`);
+    let button = document.querySelector(`[data-student-filter="${filterType}"]`);
     if (button) {
         button.textContent = displayText;
         button.setAttribute('data-value', value);
@@ -861,7 +401,7 @@ function updateStudentFilterButton(filterType, value, displayText) {
 }
 
 function getStudentGenderDisplayText(value) {
-    const texts = { all: 'All Gender', male: 'Male Only', female: 'Female Only' };
+    let texts = { all: 'All Gender', male: 'Male Only', female: 'Female Only' };
     return texts[value] || 'All Gender';
 }
 
@@ -870,12 +410,12 @@ function getStudentGradeDisplayText(value) {
 }
 
 function getStudentRatingDisplayText(value) {
-    const texts = { all: 'All Rating', highest: 'Highest First', lowest: 'Lowest First' };
+    let texts = { all: 'All Rating', highest: 'Highest First', lowest: 'Lowest First' };
     return texts[value] || 'All Rating';
 }
 
 function getStudentAgeDisplayText(value) {
-    const texts = { 
+    let texts = { 
         all: 'All Ages', 
         '6-10': '6-10 years', 
         '11-14': '11-14 years', 
@@ -908,16 +448,16 @@ function applyStudentFilters() {
     }
 
     if (currentStudentFilters.age !== 'all') {
-        filteredStudents = filteredStudents.filter(student => {
-            const age = student.age;
-            switch (currentStudentFilters.age) {
-                case '6-10': return age >= 6 && age <= 10;
-                case '11-14': return age >= 11 && age <= 14;
-                case '15-18': return age >= 15 && age <= 18;
-                default: return true;
-            }
-        });
-    }
+    filteredStudents = filteredStudents.filter(student => {
+        let age = student.age;
+        switch (currentStudentFilters.age) {
+            case '6-10': return age >= 6 && age <= 10;
+            case '11-14': return age >= 11 && age <= 14;
+            case '15-18': return age >= 15 && age <= 18;
+            default: return true;
+        }
+    });
+}
 
     if (currentStudentFilters.rating !== 'all') {
         filteredStudents.sort((a, b) => {
@@ -931,4 +471,171 @@ function applyStudentFilters() {
 
     renderStudents(filteredStudents);
     updateStudentsCount(filteredStudents.length, studentsData.length);
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadStudentsData();
+    initializeStudentFilters();
+    setupStudentSearch();
+});
+
+
+function openStudentModal() {
+    const modal = document.getElementById('addStudentModal');
+    modal.classList.remove('hidden');
+    
+    document.body.style.overflow = 'hidden';
+    
+    document.addEventListener('keydown', handleStudentEscapeKey);
+}
+
+function closeStudentModal() {
+    const modal = document.getElementById('addStudentModal');
+    modal.classList.add('hidden');
+    
+    document.body.style.overflow = '';
+    
+    document.removeEventListener('keydown', handleStudentEscapeKey);
+    document.getElementById('addStudentForm').reset();
+}
+
+function handleStudentEscapeKey(e) {
+    if (e.key === 'Escape') {
+        closeStudentModal();
+    }
+}
+
+function handleStudentBackdropClick(e) {
+    if (e.target.id === 'addStudentModal') {
+        closeStudentModal();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const studentForm = document.getElementById('addStudentForm');
+    const studentModal = document.getElementById('addStudentModal');
+    
+    if (studentForm && studentModal) {
+        studentModal.addEventListener('click', handleStudentBackdropClick);
+        
+        studentModal.querySelector('.bg-white').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        
+        studentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const formData = new FormData(e.target);
+            const studentData = {
+                name: formData.get('name'),
+                grade: parseInt(formData.get('grade')),
+                age: parseInt(formData.get('age')),
+                rating: parseFloat(formData.get('rating')),
+                coins: parseInt(formData.get('coins')),
+                gender: formData.get('gender'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                twitter: formData.get('twitter') || `@${formData.get('name').toLowerCase().replace(/\s+/g, '')}`,
+                linkedin: formData.get('linkedin') || `linkedin.com/in/${formData.get('name').toLowerCase().replace(/\s+/g, '-')}`,
+                avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${formData.get('name')}`
+            };
+
+            try {
+                const response = await fetch(STUDENTS_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(studentData)
+                });
+                
+                if (!response.ok) throw new Error('Failed to add student');
+                
+                const newStudent = await response.json();
+                studentsData.push(newStudent);
+                renderStudents(studentsData);
+                updateStudentsCount(studentsData.length, studentsData.length);
+                closeStudentModal();
+                
+                showToast('Student added successfully!', 'success');
+            } catch (error) {
+                showToast('Failed to add student. Please try again.', 'error');
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    let studentForm = document.getElementById('addStudentForm');
+    if (studentForm) {
+        studentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            let formData = new FormData(e.target);
+            let studentData = {
+                name: formData.get('name'),
+                grade: parseInt(formData.get('grade')),
+                age: parseInt(formData.get('age')),
+                rating: parseFloat(formData.get('rating')),
+                coins: parseInt(formData.get('coins')),
+                gender: formData.get('gender'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                twitter: formData.get('twitter') || `@${formData.get('name').toLowerCase().replace(/\s+/g, '')}`,
+                linkedin: formData.get('linkedin') || `linkedin.com/in/${formData.get('name').toLowerCase().replace(/\s+/g, '-')}`,
+                avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${formData.get('name')}`
+            };
+
+            try {
+                let response = await fetch(STUDENTS_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(studentData)
+                });
+                
+                if (!response.ok) throw new Error('Failed to add student');
+                
+                let newStudent = await response.json();
+                studentsData.push(newStudent);
+                renderStudents(studentsData);
+                updateStudentsCount(studentsData.length, studentsData.length);
+                closeStudentModal();
+                
+                showToast('Student added successfully!', 'success');
+            } catch (error) {
+                showToast('Failed to add student. Please try again.', 'error');
+            }
+        });
+    }
+});
+
+if (typeof showToast === 'undefined') {
+    function showToast(message, type = 'info') {
+        document.querySelectorAll('[data-toast]').forEach(toast => toast.remove());
+        
+        let toast = document.createElement('div');
+        toast.setAttribute('data-toast', 'true');
+        toast.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg text-white font-medium z-50 transform transition-all duration-300 ${
+            type === 'success' ? 'bg-green-500' : 
+            type === 'error' ? 'bg-red-500' : 
+            'bg-blue-500'
+        }`;
+        toast.textContent = message;
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.transform = 'translateX(0)';
+        }, 10);
+        
+        setTimeout(() => {
+            toast.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        }, 3000);
+    }
 }

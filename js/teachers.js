@@ -1,319 +1,4 @@
-let teachersData = [
-    {
-        id: 1,
-        name: "Ramiro Beer",
-        subject: "Computer Science",
-        experience: 5,
-        age: 28,
-        rating: 3.7,
-        phone: "725-645-1187 x54086",
-        email: "Ramiro.Beer88@hotmail.com",
-        twitter: "@ramirobeer",
-        linkedin: "linkedin.com/in/ramiro-beer",
-        gender: "Male"
-    },
-    {
-        id: 2,
-        name: "Debra Gottlieb",
-        subject: "Physics",
-        experience: 34,
-        age: 58,
-        rating: 4.5,
-        phone: "482-775-3845 x7034",
-        email: "Debra.Gottlieb@yahoo.com",
-        twitter: "@debragottlieb",
-        linkedin: "linkedin.com/in/debra-gottlieb",
-        gender: "Female"
-    },
-    {
-        id: 3,
-        name: "Sandra Franey",
-        subject: "Computer Science",
-        experience: 4,
-        age: 27,
-        rating: 4.2,
-        phone: "400-310-9506 x7960",
-        email: "Sandra_Farney66@hotmail.com",
-        twitter: "@sandrafarney",
-        linkedin: "linkedin.com/in/sandra-farney",
-        gender: "Female"
-    },
-    {
-        id: 4,
-        name: "Lance Ledner",
-        subject: "Computer Science",
-        experience: 36,
-        age: 60,
-        rating: 4.1,
-        phone: "1-852-430-6889 x82737",
-        email: "Lance.Ledner65@hotmail.com",
-        twitter: "@lanceledner",
-        linkedin: "linkedin.com/in/lance-ledner",
-        gender: "Male"
-    },
-    {
-        id: 5,
-        name: "Maria Rodriguez",
-        subject: "Mathematics",
-        experience: 12,
-        age: 40,
-        rating: 4.3,
-        phone: "555-123-4567 x1234",
-        email: "maria.rodriguez@school.edu",
-        twitter: "@mariarodriguez",
-        linkedin: "linkedin.com/in/maria-rodriguez",
-        gender: "Female"
-    },
-    {
-        id: 6,
-        name: "James Wilson",
-        subject: "Chemistry",
-        experience: 8,
-        age: 35,
-        rating: 4.4,
-        phone: "555-234-5678 x2345",
-        email: "james.wilson@school.edu",
-        twitter: "@jameswilson",
-        linkedin: "linkedin.com/in/james-wilson",
-        gender: "Male"
-    },
-    {
-        id: 7,
-        name: "Lisa Thompson",
-        subject: "Biology",
-        experience: 15,
-        age: 42,
-        rating: 4.6,
-        phone: "555-345-6789 x3456",
-        email: "lisa.thompson@school.edu",
-        twitter: "@lisathompson",
-        linkedin: "linkedin.com/in/lisa-thompson",
-        gender: "Female"
-    },
-    {
-        id: 8,
-        name: "Michael Chen",
-        subject: "Mathematics",
-        experience: 7,
-        age: 32,
-        rating: 4.0,
-        phone: "555-456-7890 x4567",
-        email: "michael.chen@school.edu",
-        twitter: "@michaelchen",
-        linkedin: "linkedin.com/in/michael-chen",
-        gender: "Male"
-    },
-    {
-        id: 9,
-        name: "Sarah Johnson",
-        subject: "English",
-        experience: 20,
-        age: 45,
-        rating: 4.7,
-        phone: "555-567-8901 x5678",
-        email: "sarah.johnson@school.edu",
-        twitter: "@sarahjohnson",
-        linkedin: "linkedin.com/in/sarah-johnson",
-        gender: "Female"
-    },
-    {
-        id: 10,
-        name: "David Martinez",
-        subject: "History",
-        experience: 18,
-        age: 48,
-        rating: 4.3,
-        phone: "555-678-9012 x6789",
-        email: "david.martinez@school.edu",
-        twitter: "@davidmartinez",
-        linkedin: "linkedin.com/in/david-martinez",
-        gender: "Male"
-    },
-    {
-        id: 11,
-        name: "Emily Davis",
-        subject: "Art",
-        experience: 6,
-        age: 29,
-        rating: 4.2,
-        phone: "555-789-0123 x7890",
-        email: "emily.davis@school.edu",
-        twitter: "@emilydavis",
-        linkedin: "linkedin.com/in/emily-davis",
-        gender: "Female"
-    },
-    {
-        id: 12,
-        name: "Robert Brown",
-        subject: "Physics",
-        experience: 25,
-        age: 55,
-        rating: 4.8,
-        phone: "555-890-1234 x8901",
-        email: "robert.brown@school.edu",
-        twitter: "@robertbrown",
-        linkedin: "linkedin.com/in/robert-brown",
-        gender: "Male"
-    },
-    {
-        id: 13,
-        name: "Jennifer Lee",
-        subject: "Computer Science",
-        experience: 3,
-        age: 26,
-        rating: 3.9,
-        phone: "555-901-2345 x9012",
-        email: "jennifer.lee@school.edu",
-        twitter: "@jenniferlee",
-        linkedin: "linkedin.com/in/jennifer-lee",
-        gender: "Female"
-    },
-    {
-        id: 14,
-        name: "Christopher Taylor",
-        subject: "Music",
-        experience: 10,
-        age: 38,
-        rating: 4.5,
-        phone: "555-012-3456 x0123",
-        email: "chris.taylor@school.edu",
-        twitter: "@christaylor",
-        linkedin: "linkedin.com/in/christopher-taylor",
-        gender: "Male"
-    },
-    {
-        id: 15,
-        name: "Amanda White",
-        subject: "Psychology",
-        experience: 9,
-        age: 34,
-        rating: 4.1,
-        phone: "555-123-4567 x1234",
-        email: "amanda.white@school.edu",
-        twitter: "@amandawhite",
-        linkedin: "linkedin.com/in/amanda-white",
-        gender: "Female"
-    },
-    {
-        id: 16,
-        name: "Kevin Anderson",
-        subject: "Economics",
-        experience: 14,
-        age: 41,
-        rating: 4.4,
-        phone: "555-234-5678 x2345",
-        email: "kevin.anderson@school.edu",
-        twitter: "@kevinanderson",
-        linkedin: "linkedin.com/in/kevin-anderson",
-        gender: "Male"
-    },
-    {
-        id: 17,
-        name: "Michelle Garcia",
-        subject: "Spanish",
-        experience: 11,
-        age: 36,
-        rating: 4.6,
-        phone: "555-345-6789 x3456",
-        email: "michelle.garcia@school.edu",
-        twitter: "@michellegarcia",
-        linkedin: "linkedin.com/in/michelle-garcia",
-        gender: "Female"
-    },
-    {
-        id: 18,
-        name: "Brian Clark",
-        subject: "Physical Education",
-        experience: 16,
-        age: 44,
-        rating: 4.2,
-        phone: "555-456-7890 x4567",
-        email: "brian.clark@school.edu",
-        twitter: "@brianclark",
-        linkedin: "linkedin.com/in/brian-clark",
-        gender: "Male"
-    },
-    {
-        id: 19,
-        name: "Jessica Hall",
-        subject: "Biology",
-        experience: 5,
-        age: 30,
-        rating: 3.8,
-        phone: "555-567-8901 x5678",
-        email: "jessica.hall@school.edu",
-        twitter: "@jessicahall",
-        linkedin: "linkedin.com/in/jessica-hall",
-        gender: "Female"
-    },
-    {
-        id: 20,
-        name: "Daniel Wright",
-        subject: "Chemistry",
-        experience: 22,
-        age: 52,
-        rating: 4.7,
-        phone: "555-678-9012 x6789",
-        email: "daniel.wright@school.edu",
-        twitter: "@danielwright",
-        linkedin: "linkedin.com/in/daniel-wright",
-        gender: "Male"
-    },
-    {
-        id: 21,
-        name: "Nicole King",
-        subject: "English",
-        experience: 8,
-        age: 33,
-        rating: 4.3,
-        phone: "555-789-0123 x7890",
-        email: "nicole.king@school.edu",
-        twitter: "@nicoleking",
-        linkedin: "linkedin.com/in/nicole-king",
-        gender: "Female"
-    },
-    {
-        id: 22,
-        name: "Matthew Scott",
-        subject: "Mathematics",
-        experience: 19,
-        age: 47,
-        rating: 4.5,
-        phone: "555-890-1234 x8901",
-        email: "matthew.scott@school.edu",
-        twitter: "@matthewscott",
-        linkedin: "linkedin.com/in/matthew-scott",
-        gender: "Male"
-    },
-    {
-        id: 23,
-        name: "Rachel Adams",
-        subject: "Computer Science",
-        experience: 2,
-        age: 25,
-        rating: 3.6,
-        phone: "555-901-2345 x9012",
-        email: "rachel.adams@school.edu",
-        twitter: "@racheladams",
-        linkedin: "linkedin.com/in/rachel-adams",
-        gender: "Female"
-    },
-    {
-        id: 24,
-        name: "Andrew Nelson",
-        subject: "Physics",
-        experience: 13,
-        age: 39,
-        rating: 4.4,
-        phone: "555-012-3456 x0123",
-        email: "andrew.nelson@school.edu",
-        twitter: "@andrewnelson",
-        linkedin: "linkedin.com/in/andrew-nelson",
-        gender: "Male"
-    }
-];
-
-
+let teachersData = [];
 let currentFilters = {
     gender: 'all',
     experience: 'all',
@@ -321,27 +6,241 @@ let currentFilters = {
     profession: 'all',
     search: ''
 };
+function getInitials(name) {
+    if (!name) return '??';
+    return name.split(' ')
+        .map(word => word.charAt(0))
+        .join('')
+        .toUpperCase()
+        .substring(0, 2);
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderTeachers(teachersData);
-    updateTeachersCount(teachersData.length, teachersData.length);
+let API_URL = 'https://692376893ad095fb84709f35.mockapi.io/teachers';
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadTeachersData();
     initializeFilters();
     setupSearch();
 });
+
+async function loadTeachersData() {
+    try {
+        showLoadingState();
+        
+        let response = await fetch(API_URL);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        let data = await response.json();
+        
+        data = data.map(teacher => ({
+            ...teacher,
+            rating: normalizeRating(teacher.rating)
+        }));
+        
+        if (!Array.isArray(data)) {
+            throw new Error('Invalid data format: Expected array');
+        }
+        
+        if (data.length === 0) {
+            console.warn('No teachers data found in API');
+        }
+        
+        teachersData = data;
+        renderTeachers(teachersData);
+        updateTeachersCount(teachersData.length, teachersData.length);
+        
+    } catch (error) {
+        console.error('Error loading teachers data:', error);
+        showErrorState('Failed to load teachers data. Please try again later.');
+        teachersData = [];
+    } finally {
+        hideLoadingState();
+    }
+}
+
+function normalizeRating(rating) {
+    if (rating === null || rating === undefined) {
+        return 3.0;
+    }
+    
+    let numRating = typeof rating === 'string' ? parseFloat(rating) : rating;
+    
+    if (numRating >= 1 && numRating <= 5) {
+        return parseFloat(numRating.toFixed(1));
+    }
+    
+    if (numRating >= 0 && numRating <= 100) {
+        let normalized = 1 + (numRating / 100) * 4;
+        return parseFloat(normalized.toFixed(1));
+    }
+    
+    return Math.min(5, parseFloat(numRating.toFixed(1)));
+}
+
+function normalizeGender(gender) {
+    console.log('Raw gender value:', gender, 'Type:', typeof gender);
+    
+    if (gender === null || gender === undefined) {
+        return Math.random() > 0.5 ? 'Male' : 'Female';
+    }
+    
+    if (typeof gender === 'boolean') {
+        return gender ? 'Male' : 'Female';
+    }
+    
+    if (typeof gender === 'number') {
+        return gender === 1 ? 'Male' : 'Female';
+    }
+    
+    if (typeof gender === 'string') {
+        const genderLower = gender.toLowerCase();
+        
+        if (genderLower.includes('male') || genderLower === 'm' || genderLower === 'man' || genderLower === 'true' || genderLower === '1') {
+            return 'Male';
+        }
+        if (genderLower.includes('female') || genderLower === 'f' || genderLower === 'woman' || genderLower === 'women' || genderLower === 'false' || genderLower === '0') {
+            return 'Female';
+        }
+    }
+    
+    return Math.random() > 0.5 ? 'Male' : 'Female';
+}
+
+function showLoadingState() {
+    let container = document.getElementById("teachersContainer");
+    if (container) {
+        container.innerHTML = `
+            <div class="col-span-full flex justify-center items-center py-12">
+                <div class="text-center">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                    <p class="text-gray-600 dark:text-gray-400">Loading teachers...</p>
+                </div>
+            </div>
+        `;
+    }
+}
+
+function showErrorState(message) {
+    let container = document.getElementById("teachersContainer");
+    if (container) {
+        container.innerHTML = `
+            <div class="col-span-full flex justify-center items-center py-12">
+                <div class="text-center text-red-600 dark:text-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                    <p class="text-lg font-medium mb-2">Oops! Something went wrong</p>
+                    <p class="text-sm">${message}</p>
+                    <button onclick="loadTeachersData()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+}
+
+function hideLoadingState() {
+}
+
+async function addTeacherToAPI(teacherData) {
+    try {
+        let response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(teacherData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        let newTeacher = await response.json();
+        return newTeacher;
+        
+    } catch (error) {
+        console.error('Error adding teacher:', error);
+        throw error;
+    }
+}
+
+async function updateTeacherInAPI(teacherId, teacherData) {
+    try {
+        let response = await fetch(`${API_URL}/${teacherId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(teacherData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        let updatedTeacher = await response.json();
+        return updatedTeacher;
+        
+    } catch (error) {
+        console.error('Error updating teacher:', error);
+        throw error;
+    }
+}
+
+async function deleteTeacherFromAPI(teacherId) {
+    try {
+        let response = await fetch(`${API_URL}/${teacherId}`, {
+            method: 'DELETE'
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        return true;
+        
+    } catch (error) {
+        console.error('Error deleting teacher:', error);
+        throw error;
+    }
+}
 
 function renderTeachers(teachers = teachersData) {
     let container = document.getElementById("teachersContainer");
     if (!container) return;
 
-    container.innerHTML = teachers.map(teacher => `
-        <div class="teacher-card flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group">
+    if (teachers.length === 0) {
+        container.innerHTML = `
+            <div class="col-span-full flex justify-center items-center py-12">
+                <div class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                    </svg>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg">No teachers found</p>
+                    <p class="text-gray-500 dark:text-gray-500 text-sm">Try adjusting your filters or search terms</p>
+                </div>
+            </div>
+        `;
+        return;
+    }
 
-            <div class="flex flex-col items-center text-center mb-4">
-                <span class="relative flex size-10 shrink-0 overflow-hidden rounded-full h-20 w-20 mb-3 ring-4 ring-blue-100 dark:ring-blue-900">
-                    <div class="w-full h-full flex items-center justify-center text-2xl font-bold text-gray-900 dark:text-white bg-gray-300 dark:bg-gray-700 rounded-full">
-                        ${teacher.name.split(" ").map(n => n[0]).join("")}
-                    </div>
-                </span>
+    container.innerHTML = teachers.map(teacher => `
+        <div class="teacher-card flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group" 
+         onclick="openDetailPage('teacher', '${teacher.id}')">
+        <div class="flex flex-col items-center text-center mb-4">
+        <div class="relative h-20 w-20 mb-3">
+        ${teacher.avatar ? 
+            `<img src="${teacher.avatar}" alt="${teacher.name}" class="w-full h-full rounded-full object-cover ring-4 ring-blue-100 dark:ring-blue-900" />` :
+            `<div class="w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold ring-4 ring-blue-100 dark:ring-blue-900">
+            ${getInitials(teacher.name)}
+            </div>`
+        }
+        </div>
 
                 <h3 class="text-gray-900 dark:text-white mb-1">${teacher.name}</h3>
 
@@ -361,7 +260,7 @@ function renderTeachers(teachers = teachersData) {
                         <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-users h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16 3.128a4 4 0 0 1 0 7.744"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
                             <circle cx="9" cy="7" r="4"></circle>
                         </svg>
                         ${teacher.age}y
@@ -373,6 +272,14 @@ function renderTeachers(teachers = teachersData) {
                         <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
                     </svg>
                     <span class="text-gray-900 dark:text-white">${teacher.rating}</span>
+                </div>
+
+                <div class="w-full space-y-2 my-3">
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div class="bg-black dark:bg-white h-2 rounded-full transition-all duration-300" 
+                             style="width: ${(teacher.rating / 5) * 100}%">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -394,10 +301,10 @@ function renderTeachers(teachers = teachersData) {
                     ${teacher.linkedin}
                 </div>
             </div>
-
         </div>
     `).join("");
 }
+
 
 function updateTeachersCount(showing, total) {
     let el = document.getElementById("teachersCount");
@@ -422,11 +329,11 @@ function initializeFilters() {
 }
 
 function populateProfessionOptions() {
-    const professionContainer = document.querySelector('.profession-option').parentElement;
-    const professions = [...new Set(teachersData.map(teacher => teacher.subject))];
+    let professionContainer = document.querySelector('.profession-option').parentElement;
+    let professions = [...new Set(teachersData.map(teacher => teacher.subject))];
     
     professions.forEach(profession => {
-        const button = document.createElement('button');
+        let button = document.createElement('button');
         button.className = 'profession-option w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700';
         button.setAttribute('data-value', profession);
         button.textContent = profession;
@@ -435,13 +342,13 @@ function populateProfessionOptions() {
 }
 
 function setupFilterDropdowns() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    let filterButtons = document.querySelectorAll('.filter-btn');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.stopPropagation();
-            const dropdown = button.nextElementSibling;
-            const isVisible = dropdown.style.display === 'block';
+            let dropdown = button.nextElementSibling;
+            let isVisible = dropdown.style.display === 'block';
             
             document.querySelectorAll('.absolute').forEach(dropdown => {
                 dropdown.style.display = 'none';
@@ -461,7 +368,7 @@ function setupFilterDropdowns() {
 function setupFilterHandlers() {
     document.querySelectorAll('.gender-option').forEach(option => {
         option.addEventListener('click', (e) => {
-            const value = e.target.getAttribute('data-value');
+            let value = e.target.getAttribute('data-value');
             currentFilters.gender = value;
             updateFilterButton('gender', value, getGenderDisplayText(value));
             applyFilters();
@@ -470,7 +377,7 @@ function setupFilterHandlers() {
 
     document.querySelectorAll('.experience-option').forEach(option => {
         option.addEventListener('click', (e) => {
-            const value = e.target.getAttribute('data-value');
+            let value = e.target.getAttribute('data-value');
             currentFilters.experience = value;
             updateFilterButton('experience', value, getExperienceDisplayText(value));
             applyFilters();
@@ -479,7 +386,7 @@ function setupFilterHandlers() {
 
     document.querySelectorAll('.rating-option').forEach(option => {
         option.addEventListener('click', (e) => {
-            const value = e.target.getAttribute('data-value');
+            let value = e.target.getAttribute('data-value');
             currentFilters.rating = value;
             updateFilterButton('rating', value, getRatingDisplayText(value));
             applyFilters();
@@ -488,7 +395,7 @@ function setupFilterHandlers() {
 
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('profession-option')) {
-            const value = e.target.getAttribute('data-value');
+            let value = e.target.getAttribute('data-value');
             currentFilters.profession = value;
             updateFilterButton('profession', value, getProfessionDisplayText(value));
             applyFilters();
@@ -497,18 +404,18 @@ function setupFilterHandlers() {
 }
 
 function updateFilterButton(filterType, value, displayText) {
-    const button = document.querySelector(`[data-filter="${filterType}"]`);
+    let button = document.querySelector(`[data-filter="${filterType}"]`);
     button.textContent = displayText;
     button.setAttribute('data-value', value);
 }
 
 function getGenderDisplayText(value) {
-    const texts = { all: 'All Gender', male: 'Male Only', female: 'Female Only' };
+    let texts = { all: 'All Gender', male: 'Male Only', female: 'Female Only' };
     return texts[value] || 'All Gender';
 }
 
 function getExperienceDisplayText(value) {
-    const texts = { 
+    let texts = { 
         all: 'All Experience', 
         '0-5': '0-5 years', 
         '6-10': '6-10 years', 
@@ -519,7 +426,7 @@ function getExperienceDisplayText(value) {
 }
 
 function getRatingDisplayText(value) {
-    const texts = { all: 'All Rating', highest: 'Highest First', lowest: 'Lowest First' };
+    let texts = { all: 'All Rating', highest: 'Highest First', lowest: 'Lowest First' };
     return texts[value] || 'All Rating';
 }
 
@@ -546,7 +453,7 @@ function applyFilters() {
 
     if (currentFilters.experience !== 'all') {
         filteredTeachers = filteredTeachers.filter(teacher => {
-            const exp = teacher.experience;
+            let exp = teacher.experience;
             switch (currentFilters.experience) {
                 case '0-5': return exp >= 0 && exp <= 5;
                 case '6-10': return exp >= 6 && exp <= 10;
@@ -576,3 +483,111 @@ function applyFilters() {
     renderTeachers(filteredTeachers);
     updateTeachersCount(filteredTeachers.length, teachersData.length);
 }
+
+
+function openTeacherModal() {
+    const modal = document.getElementById('addTeacherModal');
+    modal.classList.remove('hidden');
+    
+    document.body.style.overflow = 'hidden';
+    
+    document.addEventListener('keydown', handleTeacherEscapeKey);
+}
+
+function closeTeacherModal() {
+    const modal = document.getElementById('addTeacherModal');
+    modal.classList.add('hidden');
+    
+    document.body.style.overflow = '';
+    
+    document.removeEventListener('keydown', handleTeacherEscapeKey);
+    document.getElementById('addTeacherForm').reset();
+}
+
+function handleTeacherEscapeKey(e) {
+    if (e.key === 'Escape') {
+        closeTeacherModal();
+    }
+}
+
+function handleTeacherBackdropClick(e) {
+    if (e.target.id === 'addTeacherModal') {
+        closeTeacherModal();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const teacherForm = document.getElementById('addTeacherForm');
+    const teacherModal = document.getElementById('addTeacherModal');
+    
+    if (teacherForm && teacherModal) {
+        teacherModal.addEventListener('click', handleTeacherBackdropClick);
+        
+        teacherModal.querySelector('.bg-white').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        
+        teacherForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const formData = new FormData(e.target);
+            const teacherData = {
+                name: formData.get('name'),
+                subject: formData.get('subject'),
+                experience: parseInt(formData.get('experience')),
+                age: parseInt(formData.get('age')),
+                rating: parseFloat(formData.get('rating')),
+                gender: formData.get('gender'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                twitter: formData.get('twitter') || `@${formData.get('name').toLowerCase().replace(/\s+/g, '')}`,
+                linkedin: formData.get('linkedin') || `linkedin.com/in/${formData.get('name').toLowerCase().replace(/\s+/g, '-')}`,
+                avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${formData.get('name')}`
+            };
+
+            try {
+                const newTeacher = await addTeacherToAPI(teacherData);
+                teachersData.push(newTeacher);
+                renderTeachers(teachersData);
+                updateTeachersCount(teachersData.length, teachersData.length);
+                closeTeacherModal();
+                
+                showToast('Teacher added successfully!', 'success');
+            } catch (error) {
+                showToast('Failed to add teacher. Please try again.', 'error');
+            }
+        });
+    }
+});
+
+document.getElementById('addTeacherForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    let formData = new FormData(e.target);
+    let teacherData = {
+        name: formData.get('name'),
+        subject: formData.get('subject'),
+        experience: parseInt(formData.get('experience')),
+        age: parseInt(formData.get('age')),
+        rating: parseFloat(formData.get('rating')),
+        gender: formData.get('gender'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        twitter: formData.get('twitter') || `@${formData.get('name').toLowerCase().replace(/\s+/g, '')}`,
+        linkedin: formData.get('linkedin') || `linkedin.com/in/${formData.get('name').toLowerCase().replace(/\s+/g, '-')}`,
+        avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${formData.get('name')}`
+    };
+
+    try {
+        let newTeacher = await addTeacherToAPI(teacherData);
+        teachersData.push(newTeacher);
+        renderTeachers(teachersData);
+        updateTeachersCount(teachersData.length, teachersData.length);
+        closeTeacherModal();
+        
+        showToast('Teacher added successfully!', 'success');
+    } catch (error) {
+        showToast('Failed to add teacher. Please try again.', 'error');
+    }
+});
