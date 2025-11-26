@@ -106,11 +106,11 @@ async function loadStudentsData() {
 }
 
 function normalizeStudentAge(age) {
-    if (age >= 6 && age <= 20) {
+    if (age >= 6 && age <= 25) {
         return age;
     }
-    if (age > 18) {
-        return Math.min(18, Math.max(6, age % 13 + 6));
+    if (age > 25) {
+        return Math.min(25, Math.max(6, age % 13 + 6));
     }
     return Math.max(6, age);
 }
@@ -126,10 +126,17 @@ function normalizeStudentGrade(grade) {
 }
 
 function normalizeStudentCoins(coins) {
-    if (coins >= 0 && coins <= 500) {
-        return coins;
+    if (coins === null || coins === undefined) {
+        return 0;
     }
-    return Math.min(500, Math.max(0, coins));
+    
+    let numCoins = typeof coins === 'string' ? parseFloat(coins) : coins;
+    
+    if (isNaN(numCoins)) {
+        return 0;
+    }
+    
+    return Math.max(0, numCoins);
 }
 
 function showStudentLoadingState() {
@@ -576,7 +583,6 @@ function getStudentAgeDisplayText(value) {
 function applyStudentFilters() {
     let filteredStudents = [...studentsData];
 
-    // SEARCH
     if (currentStudentFilters.search) {
         filteredStudents = filteredStudents.filter(student =>
             student.name.toLowerCase().includes(currentStudentFilters.search) ||
@@ -585,7 +591,6 @@ function applyStudentFilters() {
         );
     }
 
-    // GENDER
     if (currentStudentFilters.gender !== 'all') {
         filteredStudents = filteredStudents.filter(student => {
             let normalizedGender = normalizeStudentGender(student.gender).toLowerCase();
@@ -593,14 +598,12 @@ function applyStudentFilters() {
         });
     }
 
-    // GRADE
     if (currentStudentFilters.grade !== 'all') {
         filteredStudents = filteredStudents.filter(student =>
             student.grade.toString() === currentStudentFilters.grade
         );
     }
 
-    // AGE RANGE
     if (currentStudentFilters.age !== 'all') {
         filteredStudents = filteredStudents.filter(student => {
             let age = student.age;
@@ -618,7 +621,6 @@ function applyStudentFilters() {
         });
     }
 
-    // RATING SORT
     if (currentStudentFilters.rating !== 'all') {
         if (currentStudentFilters.rating === 'highest') {
             filteredStudents.sort((a, b) => b.rating - a.rating);
@@ -628,7 +630,6 @@ function applyStudentFilters() {
         }
     }
 
-    // RESET PAGE IF FILTERING SHRINKS RESULTS
     if ((currentStudentPage - 1) * studentsPerPage >= filteredStudents.length) {
         currentStudentPage = 1;
     }
