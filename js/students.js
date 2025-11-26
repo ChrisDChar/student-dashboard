@@ -1,4 +1,6 @@
 let studentsData = [];
+let currentStudentPage = 1;
+let studentsPerPage = 8;
 let currentStudentFilters = {
     gender: 'all',
     grade: 'all',
@@ -38,26 +40,20 @@ function normalizeStudentRating(rating) {
 }
 
 function normalizeStudentGender(gender) {
-    console.log('Raw student gender value:', gender, 'Type:', typeof gender);
-    
-    // Handle null/undefined
     if (gender === null || gender === undefined) {
         return Math.random() > 0.5 ? 'Male' : 'Female';
     }
     
-    // Handle boolean values from MockAPI
     if (typeof gender === 'boolean') {
         return gender ? 'Male' : 'Female';
     }
     
-    // Handle number values (if any)
     if (typeof gender === 'number') {
         return gender === 1 ? 'Male' : 'Female';
     }
     
-    // Handle string values
     if (typeof gender === 'string') {
-        const genderLower = gender.toLowerCase();
+        let genderLower = gender.toLowerCase();
         
         if (genderLower.includes('male') || genderLower === 'm' || genderLower === 'boy' || genderLower === 'true' || genderLower === '1') {
             return 'Male';
@@ -67,7 +63,6 @@ function normalizeStudentGender(gender) {
         }
     }
     
-    // Default fallback - randomly assign Male/Female
     return Math.random() > 0.5 ? 'Male' : 'Female';
 }
 
@@ -137,25 +132,6 @@ function normalizeStudentCoins(coins) {
     return Math.min(500, Math.max(0, coins));
 }
 
-function normalizeStudentRating(rating) {
-    if (rating === null || rating === undefined) {
-        return 3.0;
-    }
-    
-    let numRating = typeof rating === 'string' ? parseFloat(rating) : rating;
-    
-    if (numRating >= 1 && numRating <= 5) {
-        return parseFloat(numRating.toFixed(1));
-    }
-    
-    if (numRating >= 0 && numRating <= 100) {
-        let normalized = 1 + (numRating / 100) * 4;
-        return parseFloat(normalized.toFixed(1));
-    }
-    
-    return Math.min(5, parseFloat(numRating.toFixed(1)));
-}
-
 function showStudentLoadingState() {
     let container = document.getElementById("studentsContainer");
     if (container) {
@@ -190,11 +166,98 @@ function showStudentErrorState(message) {
     }
 }
 
+async function editStudent(id) {
+    let student = studentsData.find(s => s.id === id);
+    if (!student) return;
+
+    let modal = document.getElementById('addStudentModal');
+    let form = document.getElementById('addStudentForm');
+    let title = modal.querySelector('h3');
+    let submitBtn = form.querySelector('button[type="submit"]');
+    
+    title.textContent = 'Edit Student';
+    submitBtn.textContent = 'Update Student';
+    
+    form.querySelector('[name="name"]').value = student.name;
+    form.querySelector('[name="grade"]').value = student.grade;
+    form.querySelector('[name="age"]').value = student.age;
+    form.querySelector('[name="rating"]').value = student.rating;
+    form.querySelector('[name="coins"]').value = student.coins;
+    form.querySelector('[name="gender"]').value = student.gender;
+    form.querySelector('[name="phone"]').value = student.phone;
+    form.querySelector('[name="email"]').value = student.email;
+    form.querySelector('[name="twitter"]').value = student.twitter || '';
+    form.querySelector('[name="linkedin"]').value = student.linkedin || '';
+
+    form.dataset.editId = id;
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+async function deleteStudent(id) {
+    let student = studentsData.find(s => s.id === id);
+    if (!student) return;
+
+    let url;
+
+    if (!student.teacherId) {
+        url = `https://692376893ad095fb84709f35.mockapi.io/students/${id}`;
+    } 
+    else {
+        url = `https://692376893ad095fb84709f35.mockapi.io/teachers/${student.teacherId}/students/${id}`;
+    }
+
+    if (!confirm("Are you sure you want to delete this student?")) return;
+
+    try {
+        let response = await fetch(url, { method: "DELETE" });
+
+        if (!response.ok) throw new Error(response.status);
+
+        studentsData = studentsData.filter(s => s.id !== id);
+        renderStudents(studentsData);
+
+        showToast("Student deleted successfully!", "success");
+
+    } catch (error) {
+        console.error("Delete error:", error);
+        showToast("Failed to delete student.", "error");
+    }
+}
+
+
+async function updateStudentInAPI(id, studentData) {
+    let response = await fetch(`${STUDENTS_API_URL}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(studentData)
+    });
+    
+    if (!response.ok) {
+        throw new Error('Failed to update student');
+    }
+    
+    return await response.json();
+}
+
 function renderStudents(students = studentsData) {
     let container = document.getElementById("studentsContainer");
     if (!container) return;
 
-    if (students.length === 0) {
+    let startIndex = (currentStudentPage - 1) * studentsPerPage;
+    let endIndex = startIndex + studentsPerPage;
+    let paginatedStudents = students.slice(startIndex, endIndex);
+
+    if (paginatedStudents.length === 0 && currentStudentPage > 1) {
+        currentStudentPage--;
+        renderStudents(students);
+        return;
+    }
+
+    if (paginatedStudents.length === 0) {
         container.innerHTML = `
             <div class="col-span-full flex justify-center items-center py-12">
                 <div class="text-center">
@@ -206,12 +269,13 @@ function renderStudents(students = studentsData) {
                 </div>
             </div>
         `;
+        renderStudentPagination(students.length);
         return;
     }
 
-    container.innerHTML = students.map(student => `
-        <div class="student-card flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group"
-         onclick="openDetailPage('student', '${student.id}')">
+    container.innerHTML = paginatedStudents.map(student => `
+        <div class="student-card flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group relative"
+         onclick="openSinglePage('student', '${student.id}')">
             <div class="flex flex-col items-center text-center mb-4">
                 <div class="relative h-20 w-20 mb-3">
                     ${student.avatar ? 
@@ -258,7 +322,7 @@ function renderStudents(students = studentsData) {
                 </div>
             </div>
 
-            <div class="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
+            <div class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <div class="flex items-center gap-2">
                     <svg class="lucide lucide-phone h-4 w-4 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
@@ -289,8 +353,93 @@ function renderStudents(students = studentsData) {
                 </div>
             </div>
 
+            <div class="flex gap-2 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                <button onclick="event.stopPropagation(); editStudent('${student.id}')" 
+                        class="edit-btn flex-1 inline-flex items-center justify-center rounded-md text-sm font-medium transition-all border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 h-9 px-4 py-2 gap-2">
+                    Edit
+                </button>
+                <button onclick="event.stopPropagation(); deleteStudent('${student.id}')" 
+                        class="delete-btn flex-1 inline-flex items-center justify-center rounded-md text-sm font-medium transition-all border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 h-9 px-4 py-2 gap-2">
+                    Delete
+                </button>
+            </div>
         </div>
     `).join("");
+
+    renderStudentPagination(students.length);
+}
+
+function renderStudentPagination(totalStudents) {
+    let container = document.getElementById("studentsContainer");
+    if (!container) return;
+
+    let totalPages = Math.ceil(totalStudents / studentsPerPage);
+    
+    if (totalPages <= 1) {
+        return;
+    }
+
+    let pages = [];
+    let maxVisiblePages = 5;
+    
+    if (totalPages <= maxVisiblePages) {
+        pages = Array.from({length: totalPages}, (_, i) => i + 1);
+    } else {
+        if (currentStudentPage <= 3) {
+            pages = [1, 2, 3, 4, '...', totalPages];
+        } else if (currentStudentPage >= totalPages - 2) {
+            pages = [1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+        } else {
+            pages = [1, '...', currentStudentPage - 1, currentStudentPage, currentStudentPage + 1, '...', totalPages];
+        }
+    }
+
+    let paginationHTML = `
+        <div class="col-span-full flex justify-center items-center space-x-1 mt-6">
+            <button onclick="changeStudentPage(${currentStudentPage - 1}, ${totalPages})" 
+                    ${currentStudentPage === 1 ? 'disabled' : ''}
+                    class="px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm">
+                Previous
+            </button>
+            
+            ${pages.map(page => 
+                page === '...' 
+                    ? `<span class="px-3 py-2 text-gray-500">...</span>`
+                    : `<button onclick="changeStudentPage(${page}, ${totalPages})"
+                            class="px-3 py-2 rounded border text-sm ${
+                                page === currentStudentPage 
+                                ? 'border-purple-500 bg-purple-500 text-white' 
+                                : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                            }">
+                        ${page}
+                    </button>`
+            ).join('')}
+            
+            <button onclick="changeStudentPage(${currentStudentPage + 1}, ${totalPages})"
+                    ${currentStudentPage === totalPages ? 'disabled' : ''}
+                    class="px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm">
+                Next
+            </button>
+        </div>
+    `;
+
+    container.insertAdjacentHTML('beforeend', paginationHTML);
+}
+
+function changeStudentPage(page, totalPages) {
+    if (page < 1 || page > totalPages) return;
+    
+    currentStudentPage = page;
+    applyStudentFilters();
+}
+
+function updateStudentsCount(showing, total) {
+    let el = document.getElementById("studentsCount");
+    if (el) {
+        let start = (currentStudentPage - 1) * studentsPerPage + 1;
+        let end = Math.min(currentStudentPage * studentsPerPage, total);
+        el.innerText = `Showing ${start}-${end} of ${total} students`;
+    }
 }
 
 function updateStudentsCount(showing, total) {
@@ -427,6 +576,7 @@ function getStudentAgeDisplayText(value) {
 function applyStudentFilters() {
     let filteredStudents = [...studentsData];
 
+    // SEARCH
     if (currentStudentFilters.search) {
         filteredStudents = filteredStudents.filter(student =>
             student.name.toLowerCase().includes(currentStudentFilters.search) ||
@@ -435,43 +585,58 @@ function applyStudentFilters() {
         );
     }
 
+    // GENDER
     if (currentStudentFilters.gender !== 'all') {
-        filteredStudents = filteredStudents.filter(student => 
-            student.gender.toLowerCase() === currentStudentFilters.gender
-        );
+        filteredStudents = filteredStudents.filter(student => {
+            let normalizedGender = normalizeStudentGender(student.gender).toLowerCase();
+            return normalizedGender === currentStudentFilters.gender;
+        });
     }
 
+    // GRADE
     if (currentStudentFilters.grade !== 'all') {
-        filteredStudents = filteredStudents.filter(student => 
+        filteredStudents = filteredStudents.filter(student =>
             student.grade.toString() === currentStudentFilters.grade
         );
     }
 
+    // AGE RANGE
     if (currentStudentFilters.age !== 'all') {
-    filteredStudents = filteredStudents.filter(student => {
-        let age = student.age;
-        switch (currentStudentFilters.age) {
-            case '6-10': return age >= 6 && age <= 10;
-            case '11-14': return age >= 11 && age <= 14;
-            case '15-18': return age >= 15 && age <= 18;
-            default: return true;
-        }
-    });
-}
+        filteredStudents = filteredStudents.filter(student => {
+            let age = student.age;
 
-    if (currentStudentFilters.rating !== 'all') {
-        filteredStudents.sort((a, b) => {
-            if (currentStudentFilters.rating === 'highest') {
-                return b.rating - a.rating;
-            } else {
-                return a.rating - b.rating;
+            switch (currentStudentFilters.age) {
+                case '6-10':
+                    return age >= 6 && age <= 10;
+                case '11-14':
+                    return age >= 11 && age <= 14;
+                case '15-18':
+                    return age >= 15 && age <= 18;
+                default:
+                    return true;
             }
         });
+    }
+
+    // RATING SORT
+    if (currentStudentFilters.rating !== 'all') {
+        if (currentStudentFilters.rating === 'highest') {
+            filteredStudents.sort((a, b) => b.rating - a.rating);
+        }
+        if (currentStudentFilters.rating === 'lowest') {
+            filteredStudents.sort((a, b) => a.rating - b.rating);
+        }
+    }
+
+    // RESET PAGE IF FILTERING SHRINKS RESULTS
+    if ((currentStudentPage - 1) * studentsPerPage >= filteredStudents.length) {
+        currentStudentPage = 1;
     }
 
     renderStudents(filteredStudents);
     updateStudentsCount(filteredStudents.length, studentsData.length);
 }
+
 
 document.addEventListener("DOMContentLoaded", async () => {
     await loadStudentsData();
@@ -479,24 +644,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     setupStudentSearch();
 });
 
-
 function openStudentModal() {
-    const modal = document.getElementById('addStudentModal');
+    let modal = document.getElementById('addStudentModal');
     modal.classList.remove('hidden');
-    
     document.body.style.overflow = 'hidden';
-    
     document.addEventListener('keydown', handleStudentEscapeKey);
 }
 
 function closeStudentModal() {
-    const modal = document.getElementById('addStudentModal');
+    let modal = document.getElementById('addStudentModal');
+    let form = document.getElementById('addStudentForm');
+    let title = modal.querySelector('h3');
+    let submitBtn = form.querySelector('button[type="submit"]');
+    
+    title.textContent = 'Add New Student';
+    submitBtn.textContent = 'Add Student';
+    delete form.dataset.editId;
+    
     modal.classList.add('hidden');
-    
     document.body.style.overflow = '';
-    
     document.removeEventListener('keydown', handleStudentEscapeKey);
-    document.getElementById('addStudentForm').reset();
+    form.reset();
 }
 
 function handleStudentEscapeKey(e) {
@@ -512,8 +680,8 @@ function handleStudentBackdropClick(e) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const studentForm = document.getElementById('addStudentForm');
-    const studentModal = document.getElementById('addStudentModal');
+    let studentForm = document.getElementById('addStudentForm');
+    let studentModal = document.getElementById('addStudentModal');
     
     if (studentForm && studentModal) {
         studentModal.addEventListener('click', handleStudentBackdropClick);
@@ -525,52 +693,6 @@ document.addEventListener('DOMContentLoaded', function() {
         studentForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             e.stopPropagation();
-            
-            const formData = new FormData(e.target);
-            const studentData = {
-                name: formData.get('name'),
-                grade: parseInt(formData.get('grade')),
-                age: parseInt(formData.get('age')),
-                rating: parseFloat(formData.get('rating')),
-                coins: parseInt(formData.get('coins')),
-                gender: formData.get('gender'),
-                phone: formData.get('phone'),
-                email: formData.get('email'),
-                twitter: formData.get('twitter') || `@${formData.get('name').toLowerCase().replace(/\s+/g, '')}`,
-                linkedin: formData.get('linkedin') || `linkedin.com/in/${formData.get('name').toLowerCase().replace(/\s+/g, '-')}`,
-                avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${formData.get('name')}`
-            };
-
-            try {
-                const response = await fetch(STUDENTS_API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(studentData)
-                });
-                
-                if (!response.ok) throw new Error('Failed to add student');
-                
-                const newStudent = await response.json();
-                studentsData.push(newStudent);
-                renderStudents(studentsData);
-                updateStudentsCount(studentsData.length, studentsData.length);
-                closeStudentModal();
-                
-                showToast('Student added successfully!', 'success');
-            } catch (error) {
-                showToast('Failed to add student. Please try again.', 'error');
-            }
-        });
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    let studentForm = document.getElementById('addStudentForm');
-    if (studentForm) {
-        studentForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
             
             let formData = new FormData(e.target);
             let studentData = {
@@ -588,25 +710,40 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             try {
-                let response = await fetch(STUDENTS_API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(studentData)
-                });
+                let isEdit = studentForm.dataset.editId;
                 
-                if (!response.ok) throw new Error('Failed to add student');
-                
-                let newStudent = await response.json();
-                studentsData.push(newStudent);
-                renderStudents(studentsData);
-                updateStudentsCount(studentsData.length, studentsData.length);
-                closeStudentModal();
-                
-                showToast('Student added successfully!', 'success');
+                if (isEdit) {
+                    let updatedStudent = await updateStudentInAPI(isEdit, studentData);
+                    let index = studentsData.findIndex(s => s.id === isEdit);
+                    studentsData[index] = updatedStudent;
+                    
+                    renderStudents(studentsData);
+                    closeStudentModal();
+                    showToast('Student updated successfully!', 'success');
+                    
+                    delete studentForm.dataset.editId;
+                } else {
+                    let response = await fetch(STUDENTS_API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(studentData)
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to add student');
+                    
+                    let newStudent = await response.json();
+                    studentsData.push(newStudent);
+                    renderStudents(studentsData);
+                    updateStudentsCount(studentsData.length, studentsData.length);
+                    closeStudentModal();
+                    
+                    showToast('Student added successfully!', 'success');
+                }
             } catch (error) {
-                showToast('Failed to add student. Please try again.', 'error');
+                let action = studentForm.dataset.editId ? 'update' : 'add';
+                showToast(`Failed to ${action} student. Please try again.`, 'error');
             }
         });
     }

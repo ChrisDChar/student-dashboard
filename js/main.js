@@ -25,13 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    updateIcon();
-    
-    console.log('Dark mode:', document.documentElement.classList.contains('dark'));
-    console.log('Body classes:', document.body.className);
-}
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        updateIcon();
+    }
 
     let savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -56,15 +53,18 @@ function switchPage(pageId, btn) {
     document.getElementById(pageId).classList.remove('hidden');
 
     document.querySelectorAll('nav button').forEach(b => {
-        b.classList.remove('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white', 'shadow-md', 'shadow-blue-500', 'dark:shadow-blue-500/30');
+        b.classList.remove('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white', 'shadow-md', 'shadow-blue-500/30');
         b.classList.add('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-gray-700');
     });
 
     btn.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-gray-700');
-    btn.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white', 'shadow-md', 'shadow-blue-500', 'dark:shadow-blue-500/30');
+    btn.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white', 'shadow-md', 'shadow-blue-500/30');
 
     if (pageId === 'teachersPage' && typeof renderTeachers === 'function') {
         renderTeachers();
+    }
+    if (pageId === 'studentsPage' && typeof renderStudents === 'function') {
+        renderStudents();
     }
 }
 
