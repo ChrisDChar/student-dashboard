@@ -113,7 +113,14 @@ function normalizeGender(gender) {
 function showLoadingState() {
     let container = document.getElementById("teachersContainer");
     if (container) {
-        showLoader(container, "Loading Teachers");
+        container.innerHTML = `
+            <div class="col-span-full flex justify-center items-center py-12">
+                <div class="text-center">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                    <p class="text-gray-600 dark:text-gray-400">Loading teachers...</p>
+                </div>
+            </div>
+        `;
     }
 }
 

@@ -142,7 +142,14 @@ function normalizeStudentCoins(coins) {
 function showStudentLoadingState() {
     let container = document.getElementById("studentsContainer");
     if (container) {
-        showLoader(container, "Loading Students");
+        container.innerHTML = `
+            <div class="col-span-full flex justify-center items-center py-12">
+                <div class="text-center">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+                    <p class="text-gray-600 dark:text-gray-400">Loading students...</p>
+                </div>
+            </div>
+        `;
     }
 }
 
