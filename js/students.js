@@ -142,14 +142,7 @@ function normalizeStudentCoins(coins) {
 function showStudentLoadingState() {
     let container = document.getElementById("studentsContainer");
     if (container) {
-        container.innerHTML = `
-            <div class="col-span-full flex justify-center items-center py-12">
-                <div class="text-center">
-                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
-                    <p class="text-gray-600 dark:text-gray-400">Loading students...</p>
-                </div>
-            </div>
-        `;
+        showLoader(container, "Loading Students");
     }
 }
 
@@ -268,9 +261,6 @@ function renderStudents(students = studentsData) {
         container.innerHTML = `
             <div class="col-span-full flex justify-center items-center py-12">
                 <div class="text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
-                    </svg>
                     <p class="text-gray-600 dark:text-gray-400 text-lg">No students found</p>
                     <p class="text-gray-500 dark:text-gray-500 text-sm">Try adjusting your filters or search terms</p>
                 </div>
@@ -447,11 +437,6 @@ function updateStudentsCount(showing, total) {
         let end = Math.min(currentStudentPage * studentsPerPage, total);
         el.innerText = `Showing ${start}-${end} of ${total} students`;
     }
-}
-
-function updateStudentsCount(showing, total) {
-    let el = document.getElementById("studentsCount");
-    if (el) el.innerText = `Showing ${showing} of ${total} students`;
 }
 
 function setupStudentSearch() {
@@ -749,31 +734,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-if (typeof showToast === 'undefined') {
-    function showToast(message, type = 'info') {
-        document.querySelectorAll('[data-toast]').forEach(toast => toast.remove());
-        
-        let toast = document.createElement('div');
-        toast.setAttribute('data-toast', 'true');
-        toast.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg text-white font-medium z-50 transform transition-all duration-300 ${
-            type === 'success' ? 'bg-green-500' : 
-            type === 'error' ? 'bg-red-500' : 
-            'bg-blue-500'
-        }`;
-        toast.textContent = message;
-        
-        document.body.appendChild(toast);
-        
-        setTimeout(() => {
-            toast.style.transform = 'translateX(0)';
-        }, 10);
-        
-        setTimeout(() => {
-            toast.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                toast.remove();
-            }, 300);
-        }, 3000);
-    }
-}

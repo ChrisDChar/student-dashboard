@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Dashboard</title>
+    <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -15,6 +16,72 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
+    <style>
+/* Loader Styles */
+.loader-card {
+  --bg-color: #111;
+  background-color: var(--bg-color);
+  padding: 1rem 2rem;
+  border-radius: 1.25rem;
+}
+
+.loader {
+  color: rgb(124, 124, 124);
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 40px;
+  padding: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 8px;
+}
+
+.words {
+  overflow: hidden;
+  position: relative;
+}
+
+.words::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    var(--bg-color) 10%,
+    transparent 30%,
+    transparent 70%,
+    var(--bg-color) 90%
+  );
+  z-index: 20;
+}
+
+.word {
+  display: block;
+  height: 100%;
+  padding-left: 6px;
+  color: #956afa;
+  animation: spin_4991 4s infinite;
+}
+
+@keyframes spin_4991 {
+  10% { transform: translateY(-102%); }
+  25% { transform: translateY(-100%); }
+  35% { transform: translateY(-202%); }
+  50% { transform: translateY(-200%); }
+  60% { transform: translateY(-302%); }
+  75% { transform: translateY(-300%); }
+  85% { transform: translateY(-402%); }
+  100% { transform: translateY(-400%); }
+}
+
+/* Dark mode support */
+.dark .loader-card {
+  --bg-color: #0f1629;
+}
+</style>
 </head>
 
 <body class="bg-gray-50 dark:bg-[#0f1629] text-gray-800 dark:text-gray-100 min-h-screen">
@@ -115,7 +182,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 dark:text-gray-400 mb-1">Total Teachers</p>
-                                    <p class="text-gray-900 dark:text-white text-lg">24</p>
+                                    <p id="totalTeachers" class="text-gray-900 dark:text-white text-lg"></p>
                                 </div>
                                 <div class="p-3 rounded-lg bg-blue-50 dark:bg-blue-950">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-users h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -132,7 +199,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 dark:text-gray-400 mb-1">Total Students</p>
-                                    <p class="text-gray-900 dark:text-white text-lg">80</p>
+                                    <p id="totalStudents" class="text-gray-900 dark:text-white text-lg"></p>
                                 </div>
                                 <div class="p-3 rounded-lg bg-purple-50 dark:bg-purple-950">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-graduation-cap h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -512,7 +579,7 @@
                                 <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                                     <span class="cursor-pointer hover:text-blue-600" onclick="switchPage('dashboardPage', this)">Dashboard</span>
                                     <span>/</span>
-                                    <span class="cursor-pointer hover:text-blue-600" id="breadcrumbList">Teachers</span>
+                                    <span class="cursor-pointer hover:text-blue-600" id="breadcrumbList" onclick="goBackToList()">Teachers</span>
                                     <span>/</span>
                                     <span class="text-gray-900 dark:text-white" id="breadcrumbName">Loading...</span>
                                 </div>
@@ -685,6 +752,7 @@
         </div>
     </div>
 
+    <script src="./js/utils.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/teachers.js"></script>
     <script src="./js/students.js"></script>

@@ -1,3 +1,29 @@
+function showLoader(container, message = "Loading") {
+    if (!container) return;
+    
+    container.innerHTML = `
+        <div class="flex justify-center items-center py-12">
+            <div class="loader-card bg-white dark:bg-[#0f1629] border border-gray-200 dark:border-gray-700">
+                <div class="loader">
+                    <span class="words">
+                        <span class="word">${message}</span>
+                        <span class="word">Please</span>
+                        <span class="word">Wait</span>
+                        <span class="word">Almost</span>
+                        <span class="word">Done</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function hideLoader(container) {
+    if (container && container.querySelector('.loader-card')) {
+        container.innerHTML = '';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     let themeToggle = document.getElementById('themeToggle');
     let sidebarToggle = document.querySelector('aside .flex.items-center.justify-between button');
@@ -93,3 +119,31 @@ function toggleSidebar() {
         }
     }
 }
+
+async function loadDashboardData() {
+    try {
+        const teachersResponse = await fetch('https://692376893ad095fb84709f35.mockapi.io/teachers');
+        const teachersData = await teachersResponse.json();
+        
+        const studentsResponse = await fetch('https://692376893ad095fb84709f35.mockapi.io/students');
+        const studentsData = await studentsResponse.json();
+        
+        document.querySelector('#dashboardPage [class*="text-gray-900 dark:text-white text-lg"]').innerHTML = teachersData.length || teachersData.count || '0';
+        document.querySelectorAll('#dashboardPage [class*="text-gray-900 dark:text-white text-lg"]')[1].innerHTML = studentsData.length || studentsData.count || '0';
+        
+    } catch (error) {
+        console.error('Error loading dashboard data:', error);
+        document.querySelector('#dashboardPage [class*="text-gray-900 dark:text-white text-lg"]').innerHTML = '0';
+        document.querySelectorAll('#dashboardPage [class*="text-gray-900 dark:text-white text-lg"]')[1].innerHTML = '0';
+    }
+}
+
+function initDashboard() {
+    loadDashboardData();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('dashboardPage')) {
+        initDashboard();
+    }
+});
