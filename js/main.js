@@ -1,23 +1,3 @@
-function showLoader(container, message = "Loading") {
-    if (!container) return;
-    
-    container.innerHTML = `
-        <div class="flex justify-center items-center py-12">
-            <div class="loader-card bg-white dark:bg-[#0f1629] border border-gray-200 dark:border-gray-700">
-                <div class="loader">
-                    <span class="words">
-                        <span class="word">${message}</span>
-                        <span class="word">Please</span>
-                        <span class="word">Wait</span>
-                        <span class="word">Almost</span>
-                        <span class="word">Done</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
 function hideLoader(container) {
     if (container && container.querySelector('.loader-card')) {
         container.innerHTML = '';
